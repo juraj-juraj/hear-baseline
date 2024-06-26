@@ -21,9 +21,9 @@ setup(
     install_requires=[
         "librosa",
         # otherwise librosa breaks
-        "numba==0.48",
+        "numba",
         # tf 2.6.0
-        "numpy==1.19.2",
+        "numpy>=1.24.2",
         "tensorflow>=2.0",
         "torch",
         # For wav2vec2 model
@@ -31,9 +31,6 @@ setup(
         "transformers",
         "torchcrepe",
         "torchopenl3",
-        # otherwise librosa breaks
-        "numba==0.48",
-        # "numba>=0.49.0", # not directly required, pinned by Snyk to avoid a vulnerability
         "scikit-learn>=0.24.2",  # not directly required, pinned by Snyk to avoid a vulnerability
     ],
     extras_require={
