@@ -10,7 +10,7 @@ from typing import Tuple
 import torch
 
 # from speechbrain.lobes.models.fairseq_wav2vec import FairseqWav2Vec2
-from speechbrain.lobes.models.huggingface_wav2vec import HuggingFaceWav2Vec2
+from speechbrain.lobes.models.huggingface_transformers import Wav2Vec2
 from torch import Tensor
 
 # HuggingFace model hub
@@ -45,7 +45,7 @@ def load_model(
         Model
     """
     # model_fairseq = FairseqWav2Vec2(model_url, save_path="pretrained/local_model.pt")
-    model_huggingface = HuggingFaceWav2Vec2(model_hub, save_path="pretrained/")
+    model_huggingface = Wav2Vec2(model_hub, save_path="pretrained/")
     model = model_huggingface
     if torch.cuda.is_available():
         model.cuda()
@@ -90,8 +90,8 @@ def get_timestamp_embeddings(
         )
 
     # Make sure the correct model type was passed in
-    if not isinstance(model, HuggingFaceWav2Vec2):
-        raise ValueError(f"Model must be an instance of {HuggingFaceWav2Vec2.__name__}")
+    if not isinstance(model, Wav2Vec2):
+        raise ValueError(f"Model must be an instance of {Wav2Vec2.__name__}")
 
     # Send the model to the same device that the audio tensor is on.
     # model = model.to(audio.device)
